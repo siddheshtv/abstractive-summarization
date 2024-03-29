@@ -1,10 +1,20 @@
 import React from "react";
+import { BrowserRouter, Routes, Route } from "react-router-dom";
+import Login from "./components/user/Login";
+import Home from "./components/dashboard/Home";
+import Logout from "./components/user/Logout";
+import Profile from "./components/user/Profile";
 
 function App() {
   return (
-    <div className="">
-      <h1 className="text-8xl text-center">Hello World</h1>
-    </div>
+    <BrowserRouter>
+      <Routes>
+        <Route path="/login" element={<Login />} />
+        <Route path="/logout" element={<Logout />} />
+        <Route path="/profile" element={<Profile />} />
+        <Route path="/" element={<Home />} />
+      </Routes>
+    </BrowserRouter>
   );
 }
 

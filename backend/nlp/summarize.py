@@ -1,5 +1,6 @@
 # from transformers import PegasusForConditionalGeneration, PegasusTokenizer
 from transformers import AutoTokenizer, AutoModelForSeq2SeqLM
+from transformers import pipeline
 
 # class Summarize:
 #     def __init__(self) -> None:
@@ -18,18 +19,21 @@ class Summarize:
         pass
     
     def get_summary(self, text):
-        tokenizer = AutoTokenizer.from_pretrained("gauravkoradiya/T5-Fintuned-on-cnn_daily_mail")
-        model = AutoModelForSeq2SeqLM.from_pretrained("gauravkoradiya/T5-Fintuned-on-cnn_daily_mail")
-        if not text:
-            return "Input text is empty"
+        summarizer = pipeline("summarization", model="iamsid47/summarization_model")
+        summary = summarizer(text)
+        return summary
+        # tokenizer = AutoTokenizer.from_pretrained("gauravkoradiya/T5-Fintuned-on-cnn_daily_mail")
+        # model = AutoModelForSeq2SeqLM.from_pretrained("gauravkoradiya/T5-Fintuned-on-cnn_daily_mail")
+        # if not text:
+        #     return "Input text is empty"
 
-        try:
-            inputs = tokenizer([text], max_length=1024, truncation=True, return_tensors='pt')
-            summary_ids = model.generate(inputs['input_ids'], max_length=512, num_beams=4, length_penalty=2.0, early_stopping=True)
-            summary = tokenizer.decode(summary_ids[0], skip_special_tokens=True)
-            return summary
-        except Exception as e:
-            return f"Error generating summary: {str(e)}"
+        # try:
+        #     inputs = tokenizer([text], max_length=1024, truncation=True, return_tensors='pt')
+        #     summary_ids = model.generate(inputs['input_ids'], max_length=512, num_beams=4, length_penalty=2.0, early_stopping=True)
+        #     summary = tokenizer.decode(summary_ids[0], skip_special_tokens=True)
+        #     return summary
+        # except Exception as e:
+        #     return f"Error generating summary: {str(e)}"
     
 # text = """
 # Maria Sharapova has basically no friends as tennis players on the WTA Tour. The Russian player has no problems in openly speaking about it and in a recent interview she said: ‘I don’t really hide any feelings too much.
