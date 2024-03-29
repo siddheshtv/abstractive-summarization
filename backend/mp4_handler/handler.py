@@ -27,25 +27,4 @@ class Handler:
         audio_path = output_path + "/" + file_name
         os.remove(audio_path)
         return print("Gracefully removed audio file...")
-    
-
-# handle = Handler()
-# text = handle.handle_video_to_audio(video_url="https://www.youtube.com/watch?v=8nHBGFKLHZQ", file_name="yoyo.mp4")
-# print(text)
-
-
-# video_url = 'https://www.youtube.com/watch?v=SnuNtIO9Cnw'
-
-# data = YouTube(video_url)
-# output_path = os.getcwd()
-# audio = data.streams.get_audio_only()
-# audio_filename = "file.mp4"
-# audio.download(output_path=output_path, filename=audio_filename)
-
-# print(audio)
-
-# model = whisper.load_model("small")
-# audio_path = output_path + "/" + audio_filename
-# text =  model.transcribe(audio_path)
-# print(text['text'])
 
